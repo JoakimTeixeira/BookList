@@ -13,3 +13,4 @@ List to organize purchase of miscellaneous items.
 ## Project dependencies: 
 * [Sortable](https://github.com/SortableJS/Sortable)
 * [Bootstrap](https://getbootstrap.com)
+* [Font Awesome](https://fontawesome.com)

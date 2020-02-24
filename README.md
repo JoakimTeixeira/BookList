@@ -1,7 +1,7 @@
 # Shopping List
 List to organize purchase of miscellaneous items.
 
-![image](https://user-images.githubusercontent.com/12193814/75174858-16b0cc00-5710-11ea-8a0b-bd657c6fde0b.png)
+![image](https://user-images.githubusercontent.com/12193814/75175839-d5212080-5711-11ea-9525-9945eac9f044.png)
 
 # What I've learned
 

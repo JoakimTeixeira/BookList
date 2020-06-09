@@ -10,7 +10,7 @@ List to organize purchase of miscellaneous items.
 * Refactored project to use *localStorage*.
 * Added *filter search* and *draggable* functionalities.
 
-## Project dependencies: 
+## Project Dependencies 
 * [Sortable](https://github.com/SortableJS/Sortable)
 * [Bootstrap](https://getbootstrap.com)
 * [Font Awesome](https://fontawesome.com)

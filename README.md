@@ -5,12 +5,12 @@ List to organize purchase of miscellaneous items.
 
 ## What I've learned
 
-* Developed shopping list with Bootstrap and Javascript. 
-* Worked with DOM and JSON manipulation.
-* Refactored project to use *localStorage*.
-* Added *filter search* and *draggable* functionalities.
+- Developed shopping list with Bootstrap and Javascript
+- Worked with DOM and JSON manipulation
+- Refactored project to use *localStorage*
+- Added *filter search* and *draggable* functionalities
 
 ## Project Dependencies 
-* [Sortable](https://github.com/SortableJS/Sortable)
-* [Bootstrap](https://getbootstrap.com)
-* [Font Awesome](https://fontawesome.com)
+- [Sortable](https://github.com/SortableJS/Sortable)
+- [Bootstrap](https://getbootstrap.com)
+- [Font Awesome](https://fontawesome.com)

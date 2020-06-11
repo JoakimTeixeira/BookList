@@ -4,7 +4,8 @@ var form = document.querySelector("#addForm");
 var filter = document.querySelector("#filter");
 var sort = Sortable.create(itemListResults, {
 	handle: '.my-handle', 
-	animation: 150
+	animation: 150,
+	onEnd
 });
 
 form.addEventListener("submit", saveItem);
@@ -14,53 +15,53 @@ itemListResults.addEventListener("click", (event)=> {
     checkDoneItem(event);
 });
 
+function onEnd() {
+	const HTMLitems = [...document.getElementById("itemListResults").getElementsByClassName("list-group-item")];
+	const orderedItems = HTMLitems.map((HTMLitem) => {
+		return {name: HTMLitem.textContent, done: HTMLitem.className.includes("done")}
+	});
+
+	localStorage.setItem('itemList', JSON.stringify(orderedItems))
+}
 
 // Save items into localStorage
 function saveItem(event) {
-	// Stops "submit" button default behaviour
-	event.preventDefault();	
-
-	let itemName = document.getElementById('input').value;
-	let done = false;
-
-	if(!validateInput(itemName)){
-		return false;
-	}
-
-	let newItem = {
-		'name': itemName,
-		'done': done
-	}
-
-	if(localStorage.getItem('itemList') === null){
-		let itemList = [];
+	try {
+		// Stops "submit" button default behaviour
+		event.preventDefault();	
+	
+		let itemName = document.getElementById('input').value;
+		let done = false;
+	
+		validateInput(itemName);
+	
+		const newItem = {
+			name: itemName,
+			done: done
+		}
+	
+		const itemList = JSON.parse(localStorage.getItem('itemList')) || []; 
 		itemList.push(newItem);
 		localStorage.setItem('itemList', JSON.stringify(itemList));
-
-	} else {
-		let itemList = JSON.parse(localStorage.getItem('itemList'));
-		itemList.push(newItem);
-		localStorage.setItem('itemList', JSON.stringify(itemList));
+	
+		document.querySelector('#addForm').reset();
+		fetchListItems();		
+	} catch (error) {
+		alert(error.message);
 	}
-
-	document.querySelector('#addForm').reset();
-	fetchListItems();		
 }
 
 function validateInput(itemName){
-	if(!itemName){
-		alert('Please add an item');
-		return false;
-	} else {		
-		let itemList = getItems();
-		for(i = 0; i < itemList.length; i++){
-			if(itemName === itemList[i].name){
-				alert('Duplicate item, please chose other name');
-				return false;
-			}		
-		}		
-	}
-	return true;
+	if(!itemName)
+		throw new Error('Please add an item');
+
+	if(itemExists(itemName))
+		throw new Error('Duplicate item, please chose other name');
+}
+
+function itemExists(item) {
+	let itemList = getItems();
+	return itemList.find(elem => elem.name === item);
 }
 
 function fetchListItems(){
@@ -71,16 +72,12 @@ function fetchListItems(){
 
 	itemListResults.innerHTML = '';
 
-	for(i = 0; i < itemList.length; i++){
+	itemList.map(item => {
 		// Create new li element
 		let li = document.createElement("li");
 	
 		// Add class
-		if (itemList[i].done === true){
-			li.className = "list-group-item done";
-		} else {
-			li.className = "list-group-item";
-		}		
+		li.className = item.done ? "list-group-item done" : "list-group-item" ;
 
 		// Create new span element
 		let span = document.createElement("span");
@@ -88,7 +85,7 @@ function fetchListItems(){
 		li.appendChild(span);
 
 		// Add text node with input value
-		li.appendChild(document.createTextNode(itemList[i].name));
+		li.appendChild(document.createTextNode(item.name));
 
 		// Create del button element
 		let deleteBtn = document.createElement("button");
@@ -101,24 +98,19 @@ function fetchListItems(){
 
 		// Append li to list
 		itemListResults.appendChild(li);
-	}		
+	})
 }
 
 function getItems(){
-	if (JSON.parse(localStorage.getItem('itemList') !== null)){
-		return JSON.parse(localStorage.getItem('itemList'));
-	} else {
-		return [];
-	}
+	return JSON.parse(localStorage.getItem('itemList')) || [];
 }
 
 function setItems(itemList){
 	localStorage.setItem('itemList', JSON.stringify(itemList));
 }
 
-const removeItem = (event)=> {
-	if(compareDelBtn(event) === true){		
-
+const removeItem = (event) => {
+	if(compareDelBtn(event)){		
 		let itemList = getItems();
 		let itemName = event.target.previousSibling.textContent;
 
@@ -130,33 +122,26 @@ const removeItem = (event)=> {
 					// Remove from array
 					itemList.splice(i, 1);
 				}
-			} 
-		} else {
-			return false;
-		}
-
-		// Re-set back to localStorage
-		setItems(itemList);		
-		// Re-fetch list items
-		fetchListItems();
+			}
+			// Re-set back to localStorage
+			setItems(itemList);		
+			// Re-fetch list items
+			fetchListItems();
+		} 
 	}
 }
 
 const checkDoneItem = (event)=> {
-	if(compareDelBtn(event) === false){
+	if(!compareDelBtn(event)){
 		let item = event.target;
 		item.classList.toggle("done");
 
 		let itemList = getItems();
-		let itemName = event.target.textContent;
+		let itemName = item.textContent;
 
 		for(let i =0;i < itemList.length;i++){
 			if(itemList[i].name === itemName){
-				if (itemList[i].done === false){
-					itemList[i].done = true;
-				} else {
-					itemList[i].done = false;
-				}
+				itemList[i].done = !itemList[i].done;
 			}
 		}
 
@@ -164,9 +149,10 @@ const checkDoneItem = (event)=> {
 		fetchListItems();
 	}
 }
+
 // Sees if element has "delete"
 function compareDelBtn(event){
-	return event.target.classList.contains("delete") ? true : false;
+	return event.target.classList.contains("delete");
 }
 
 function searchItems(event){
@@ -176,15 +162,10 @@ function searchItems(event){
 	let items = document.querySelectorAll("li");
 
 	// Convert NodeList to array
-	Array.from(items).forEach(function(item){			
+	Array.from(items).forEach((item) => {			
 		let itemName = item.textContent;
 		// Compares input to list items
-		if(itemName.toLowerCase().indexOf(text) != -1){
-			item.style.display = "block";
-		} 
-		else {
-			item.style.display = "none";
-		}
+		item.style.display = itemName.toLowerCase().indexOf(text) !== -1 ? "block" : "none"; 
 	});
 }
 

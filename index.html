@@ -1,41 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-	<link rel="stylesheet" href="style.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
-</head>
-<body>
-	<header id="main-header" class="bg-success text-white p-4 mb-3">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6">
-					<h1 id="header-title">Shopping Lister</h1>
-				</div>
-				<div class="col-md-6 align-self-center">
-					<input type="text" class="form-control" id="filter" placeholder="Search Items...">
-				</div>
-			</div>
-		</div>
-	</header>
-	<div class="container col-md-5">
-		<div id="main" class="card card-body">
-			<h2 class="title">New Item</h2>
-			<form id="addForm" class="form-inline mb-3">
-				<input id="input" type="text" class="form-control mr-2" placeholder="Insert items...">
-				<input type="submit" class="btn btn-dark" value="Add">
-			</form>
-			<h2 class="title">Inventory</h2>
-			<ul id="itemListResults" class="list-group">
-				
-			</ul>
-		</div>
-	</div>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link href="./styles/css/styles.min.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.12.1/css/all.css"
+    />
+    <title>Book List</title>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header wrapper">
+        <h1 class="header-title">Book List</h1>
+        <p>Your favorite books together</p>
+        <form>
+          <input id="header-search" type="text" placeholder="Search book..." />
+        </form>
+      </header>
 
-	<script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
-	<script src="./dom.js"></script>
-</body>
+      <main class="main wrapper">
+        <section>
+          <h2 class="heading">New Book</h2>
+          <form class="add-book" id="book-form">
+            <input
+              class="add-book-input"
+              id="input"
+              type="text"
+              placeholder="Insert book title..."
+            />
+            <button class="add-book-btn">Add</button>
+          </form>
+        </section>
+
+        <section id="book-list">
+          <h2 class="heading">My Books</h2>
+          <ul id="book-list-results"></ul>
+        </section>
+
+        <section class="tooltip">
+          &#9432;
+          <span class="tooltip-text">Drag & drop to organize items</span>
+        </section>
+      </main>
+    </div>
+  </body>
+
+  <script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
+  <script src="app.js"></script>
 </html>

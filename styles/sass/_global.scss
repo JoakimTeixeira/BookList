@@ -1,0 +1,72 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  margin: 0;
+  font-family: "Open Sans", Helvetica, sans-serif;
+  color: $default;
+  font-size: 1.5rem;
+}
+
+h1 {
+  font-size: 3.2rem;
+  color: black;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+p {
+  font-size: 1.7rem;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+h1,
+h2,
+p,
+ul {
+  margin: 0;
+}
+
+.heading,
+.tooltip {
+  margin-bottom: $negative-space / 2;
+}
+
+button {
+  color: $default;
+  border: none;
+  border-radius: $border-radius;
+  background-color: transparent;
+}
+
+ul,
+button {
+  cursor: pointer;
+}
+
+input {
+  width: 100%;
+  padding: $negative-space / 3;
+  border: 1px solid $light;
+  border-radius: $border-radius;
+}
+
+button,
+input,
+span {
+  font-size: 1.5rem;
+  outline: none;
+}

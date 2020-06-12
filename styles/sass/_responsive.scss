@@ -1,0 +1,27 @@
+@media all and (min-width: 800px) {
+  body {
+    margin: $negative-space;
+  }
+
+  .main {
+    position: relative;
+  }
+
+  .container {
+    max-width: 500px;
+    margin: 0 auto;
+    border: 1px solid $white;
+    border-radius: $border-radius;
+    box-shadow: 0 0 10px 1px rgba($color: #000000, $alpha: 0.3);
+
+    .header {
+      border-top-left-radius: $border-radius;
+      border-top-right-radius: $border-radius;
+    }
+
+    #book-list-results {
+      height: 264px;
+      overflow-y: auto;
+    }
+  }
+}

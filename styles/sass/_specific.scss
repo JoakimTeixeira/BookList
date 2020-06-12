@@ -12,7 +12,7 @@
   }
 
   p {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     margin-bottom: $negative-space;
   }
 
@@ -20,6 +20,10 @@
   p {
     color: $white;
   }
+}
+
+.main {
+  position: relative;
 }
 
 .add-book {
@@ -84,11 +88,11 @@
 }
 
 .tooltip {
+  font-size: 1.5rem;
   position: absolute;
   right: 10px;
-  bottom: 10px;
+  top: 10px;
   cursor: pointer;
-  margin: 0;
 
   &:hover .tooltip-text {
     visibility: visible;

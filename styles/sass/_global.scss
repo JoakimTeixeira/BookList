@@ -1,18 +1,21 @@
 *,
 *:before,
 *:after {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 html {
+  position: relative;
+  min-height: 100vh;
   font-size: 10px;
 }
 
 body {
-  margin: 0;
   font-family: "Open Sans", Helvetica, sans-serif;
   color: $default;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 h1 {
@@ -21,11 +24,11 @@ h1 {
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 p {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
 }
 
 ul {
@@ -33,15 +36,7 @@ ul {
   padding: 0;
 }
 
-h1,
-h2,
-p,
-ul {
-  margin: 0;
-}
-
-.heading,
-.tooltip {
+.heading {
   margin-bottom: $negative-space / 2;
 }
 

@@ -1,14 +1,10 @@
-@media all and (min-width: 800px) {
+@media all and (min-width: 768px) {
   body {
     margin: $negative-space;
   }
 
-  .main {
-    position: relative;
-  }
-
   .container {
-    max-width: 500px;
+    max-width: 450px;
     margin: 0 auto;
     border: 1px solid $white;
     border-radius: $border-radius;
@@ -18,10 +14,24 @@
       border-top-left-radius: $border-radius;
       border-top-right-radius: $border-radius;
     }
+  }
 
-    #book-list-results {
-      height: 264px;
-      overflow-y: auto;
-    }
+  #book-list-results {
+    height: 240px;
+    overflow-y: auto;
+  }
+}
+
+@media all and (min-width: 1440px) {
+  html {
+    font-size: 13px;
+  }
+
+  .container {
+    max-width: 550px;
+  }
+
+  #book-list-results {
+    height: 300px;
   }
 }

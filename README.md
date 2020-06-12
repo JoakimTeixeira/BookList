@@ -7,6 +7,7 @@ List to organize you favorite books.
 
 - Developed shopping list with Bootstrap and Javascript
 - Designed desktop and mobile layout
+- Styled elements with SASS
 - Worked with DOM and JSON manipulation
 - Refactored project to use *localStorage*
 - Implemented *filter search* and *draggable* functionalities

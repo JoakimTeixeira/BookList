@@ -1,7 +1,7 @@
 # Book List
 List to organize you favorite books.
 
-![image](https://user-images.githubusercontent.com/12193814/84535966-41c12a80-acc3-11ea-982a-33445b3bddb6.png)
+![image](https://user-images.githubusercontent.com/12193814/84543060-02013f80-acd1-11ea-8a5a-deb72a31d67a.png)
 
 ## What I've learned
 

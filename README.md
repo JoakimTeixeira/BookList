@@ -5,8 +5,8 @@ List to organize you favorite books.
 
 ## What I've learned
 
-- Developed shopping list with Bootstrap and Javascript
-- Designed desktop and mobile layout
+- Developed mobile-first book list
+- Created layout design
 - Styled elements with SASS
 - Worked with DOM and JSON manipulation
 - Refactored project to use *localStorage*
